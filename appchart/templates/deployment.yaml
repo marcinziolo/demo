@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
-  namespace: demo
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
   labels:
-    app: hello-world
+    app: {{ .Values.appName }}
 spec:
-  replicas: 4
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: hello-world
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: hello-world
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: hello-world
-          image: mcreativo/hello-world
+        - name: {{ .Values.appName }}
+          image: {{ .Values.image }}
           ports:
             - containerPort: 5000
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: hello-world-app-config
+                name: {{ .Values.appName }}-config

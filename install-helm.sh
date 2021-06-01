@@ -1,7 +1,6 @@
-kubectl
+kubectl apply -f namespace.yaml
 helm install \
---set image=hello-world \
+--set image=mcreativo/hello-world \
 --set appName=hello-world \
 --set environment=dev \
---debug \
 demo ./appchart
